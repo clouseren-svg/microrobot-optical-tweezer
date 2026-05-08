@@ -46,6 +46,7 @@ data/synthetic/*.png
 data/synthetic/*.mp4
 *.mp4
 *.avi
+!assets/*.mp4
 results/
 outputs/
 logs/
