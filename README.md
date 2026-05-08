@@ -19,6 +19,15 @@ This project provides a complete pipeline for automatic indirect manipulation of
 - **Hardware abstraction layer** supporting both simulation and real optical tweezer (OT) systems
 - **Synthetic microscope image generator** for testing without experimental data
 
+<p align="center">
+  <img src="assets/figures/microrobot_cad_model.jpeg" width="280" alt="Microrobot CAD Model"/>
+  &nbsp;&nbsp;
+  <img src="assets/figures/experimental_setup.jpeg" width="280" alt="Experimental Setup"/>
+  &nbsp;&nbsp;
+  <img src="assets/figures/microrobots_microscope.jpeg" width="320" alt="Microrobots under Microscope"/>
+</p>
+<p align="center"><i>Fig. 1 — (Left) CAD model of the microrobot with spherical handles. (Center) Experimental setup with Elliot Scientific E3500 OT system. (Right) Microrobots observed under optical microscope.</i></p>
+
 ---
 
 ## 📁 Repository Structure
@@ -43,7 +52,9 @@ This project provides a complete pipeline for automatic indirect manipulation of
 │   └── optical_tweezer_sim.py        # Simplified OT physics (virtual spring model)
 ├── tests/
 │   └── test_ellipse_detection.py     # Unit tests for ellipse detector
-├── MARSS_Yunxiao.pdf                 # Original MARSS 2022 paper
+├── assets/
+│   ├── figures/                      # Paper figures (microrobots & results)
+│   └── presentation.mp4              # Pre-presentation video
 ├── requirements.txt
 └── README.md
 ```
@@ -100,6 +111,11 @@ A modified YOLOv4-tiny architecture with three key improvements:
 
 Training settings: SGD with momentum 0.9, weight decay 0.0005, initial learning rate 0.001, 6000 iterations.
 
+<p align="center">
+  <img src="assets/figures/detection_result.jpeg" width="500" alt="Detection Result"/>
+</p>
+<p align="center"><i>Fig. 2 — Real-time microrobot detection result using the proposed ConvNext-YOLO model (confidence: 0.90).</i></p>
+
 **Results (Train Set 1)**:
 
 | Model | Precision | Recall | FPS | FPR |
@@ -122,6 +138,11 @@ Four-step pipeline for detecting spherical handles of microrobots:
 4. **K-Means Filtering** — Cluster candidates with `k=13` and remove false positives / outliers
 
 **Result**: 96.77% effective detection rate (EDR) with 1.96% false positive rate, outperforming simple blob detection (74.13% EDR, 8.68% FPR) and Hough Transform (83.61% EDR, 5.34% FPR).
+
+<p align="center">
+  <img src="assets/figures/trapping_points.jpeg" width="320" alt="Trapping Points Detection"/>
+</p>
+<p align="center"><i>Fig. 3 — Optimal trapping points (red crosses) detected on the spherical handles of a microrobot.</i></p>
 
 ### 3. Automatic Trapping Control
 
