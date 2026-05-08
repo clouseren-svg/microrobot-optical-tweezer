@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyTorch
+*.pth
+*.pt
+*.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data & Outputs
+data/synthetic/*.jpg
+data/synthetic/*.png
+data/synthetic/*.mp4
+*.mp4
+*.avi
+results/
+outputs/
+logs/
+
+# Config overrides (keep template in repo)
+config/local_*.yaml
+
+# Environment
+.env
+.venv
+env/
+venv/

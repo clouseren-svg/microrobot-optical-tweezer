@@ -1,0 +1,78 @@
+# Hardware Configuration for Optical Tweezer System
+# ==================================================
+# Modify this file to match your experimental setup.
+# The default values are based on the Elliot Scientific E3500 system
+# used in Ren et al. (MARSS 2022).
+
+# ---------------------------------------------------------------------------
+# Camera Settings
+# ---------------------------------------------------------------------------
+camera:
+  type: "basler"              # Camera manufacturer/model
+  resolution: [640, 480]      # Image resolution [width, height]
+  pixel_size_um: 0.5          # Pixel physical size [um]
+  exposure_us: 10000          # Exposure time [us]
+  gain_db: 0.0                # Analog gain [dB]
+  frame_rate: 30              # Target FPS
+
+# ---------------------------------------------------------------------------
+# Optical Tweezer System
+# ---------------------------------------------------------------------------
+optical_tweezer:
+  manufacturer: "elliot_scientific"
+  model: "E3500"
+  wavelength_nm: 1070         # Laser wavelength
+  max_traps: 5                # Maximum simultaneous traps
+  trap_stiffness_pN_nm: 0.5   # Trap stiffness (scaled units for simulation)
+  beam_waist_um: 0.5          # Beam waist radius [um]
+  max_laser_power: 1.0        # Normalized max power
+
+# ---------------------------------------------------------------------------
+# Control Parameters
+# ---------------------------------------------------------------------------
+control:
+  servo_gain:
+    kp: 0.5                   # Proportional gain
+    ki: 0.01                  # Integral gain
+    kd: 0.1                   # Derivative gain
+    lambda_max: 10.0          # Max trap speed [px/step]
+
+  trapping:
+    threshold_px: 10.0        # Distance to consider "trapped" [px]
+    timeout_seconds: 30.0     # Max trapping attempt duration
+    detection_interval: 3     # Run detector every N frames
+
+# ---------------------------------------------------------------------------
+# Detection Parameters
+# ---------------------------------------------------------------------------
+detection:
+  yolo:
+    input_size: 416           # Network input size
+    conf_thresh: 0.5          # Confidence threshold
+    nms_thresh: 0.4           # NMS IoU threshold
+
+  ellipse:
+    canny_low: 50
+    canny_high: 150
+    min_arc_length: 15
+    kmeans_k: 13              # As used in the paper
+    min_ellipse_axis: 8
+    max_ellipse_axis: 200
+
+# ---------------------------------------------------------------------------
+# Simulation Settings (for software-in-the-loop testing)
+# ---------------------------------------------------------------------------
+simulation:
+  background_mean: 60
+  background_std: 12
+  noise_sigma: 8.0
+  illumination_variation: true
+  microrobot_types:
+    - name: "A"
+      body_length: 45
+      body_width: 16
+      sphere_radius: 14
+    - name: "B"
+      body_length: 35
+      body_width: 14
+      sphere_radius: 11
